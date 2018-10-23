@@ -13,9 +13,10 @@ while(1):
     edges = cv2.Canny(frame, 100, 200)
     
     # Hough lines
-    minLineLength = 2200
+    minLineLength = 100
     maxLineGap = 10
-    lines = cv2.HoughLinesP(edges,1,np.pi/180,15,minLineLength,maxLineGap)
+    lines = cv2.HoughLinesP(image=edges,rho=1,theta=np.pi/180, threshold=15,
+        lines=np.array([]),minLineLength=minLineLength,maxLineGap=maxLineGap)
     if lines is None:
         continue
     print "Number of lines: " + str(len(lines))
