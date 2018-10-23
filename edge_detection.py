@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import math
 
 cap = cv2.VideoCapture(-1)
 
@@ -19,11 +20,17 @@ while(1):
         lines=np.array([]),minLineLength=minLineLength,maxLineGap=maxLineGap)
     if lines is None:
         continue
-    print "Number of lines: " + str(len(lines))
+    no_lines = 0;
     for line in lines:
         for x1,y1,x2,y2 in line:
-            #print "From (%d, %d) to (%d, %d)" % (x1,y1,x2,y2)
-            cv2.line(frame,(x1,y1),(x2,y2),(0,255,0),2)
+            # print "From (%d, %d) to (%d, %d)" % (x1,y1,x2,y2)
+            # Calculate line angle
+            angleDeg = abs(math.atan2(y2-y1,x2-x1)*180/np.pi)
+            # Only inclued line with angles > 80 degrees (almost vertical)
+            if angleDeg > 80:
+                cv2.line(frame,(x1,y1),(x2,y2),(0,0,255),4)
+                no_lines = no_lines + 1
+    print "Number of vertical lines: %d" % no_lines
 
     # Show images
     cv2.imshow('Hough',frame)
