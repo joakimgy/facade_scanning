@@ -4,7 +4,7 @@ import math
 import sys
 from matplotlib import pyplot as plt
 
-inputimage ='img/big_building.jpg'
+inputimage ='img/bricks.jpg'
 
 orig_image = cv2.imread(inputimage)
 img = cv2.imread(inputimage,0)
@@ -34,8 +34,8 @@ greyedges = cv2.Canny(img, lower, upper)
 #glas_building min = 10, max = 300
 #whole_building min =10, max = 40
 #big_building min 10, max 1400
-minLineLength = 10
-maxLineGap = 1400
+minLineLength = 20
+maxLineGap = 15
 lines = cv2.HoughLinesP(image=greyedges,rho=1,theta=np.pi/180, threshold=100,
 lines=np.array([]),minLineLength=minLineLength,maxLineGap=maxLineGap)
 if lines is not None:
