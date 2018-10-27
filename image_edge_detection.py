@@ -33,18 +33,21 @@ if lines is not None:
 	print "Number of vertical lines: %d" % no_lines
 
 # Show images
+cv2.namedWindow('Hough',cv2.WINDOW_NORMAL)
+cv2.namedWindow('Canny',cv2.WINDOW_NORMAL)
+cv2.resizeWindow('Hough', 1920,1080)
+cv2.resizeWindow('Canny', 1920,1080)
 cv2.imshow('Hough',img)
+cv2.imshow('Canny', edges)
 
-plt.subplot(121),plt.imshow(img,cmap = 'gray')
-plt.title('Original Image'), plt.xticks([]), plt.yticks([])
-plt.subplot(122),plt.imshow(edges,cmap = 'gray')
-plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
+#plt.subplot(121),plt.imshow(img,cmap = 'gray')
+#plt.title('Original Image'), plt.xticks([]), plt.yticks([])
+#plt.subplot(122),plt.imshow(edges,cmap = 'gray')
+#plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
 
-plt.show()
-
-#k = cv2.waitKey(5) & 0xFF
-#if k == 27:
-#break
+#plt.show()
+cv2.waitKey(0)
+	
 
 cv2.destroyAllWindows()
 
