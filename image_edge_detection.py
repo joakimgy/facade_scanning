@@ -4,7 +4,7 @@ import math
 import sys
 from matplotlib import pyplot as plt
 
-inputimage ='croppedimages/windows_balconies.jpg'
+inputimage ='croppedimages/bricks.jpg'
 
 orig_image = cv2.imread(inputimage)
 img = cv2.imread(inputimage,0)
