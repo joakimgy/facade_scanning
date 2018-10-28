@@ -4,7 +4,7 @@ import math
 import sys
 from matplotlib import pyplot as plt
 
-inputimage ='img/bricks.jpg'
+inputimage ='croppedimages/windows_balconies.jpg'
 
 orig_image = cv2.imread(inputimage)
 img = cv2.imread(inputimage,0)
@@ -34,8 +34,8 @@ greyedges = cv2.Canny(img, lower, upper)
 #glas_building min = 10, max = 300
 #whole_building min =10, max = 40
 #big_building min 10, max 1400
-minLineLength = 20
-maxLineGap = 15
+minLineLength = 100
+maxLineGap = 500
 lines = cv2.HoughLinesP(image=greyedges,rho=1,theta=np.pi/180, threshold=100,
 lines=np.array([]),minLineLength=minLineLength,maxLineGap=maxLineGap)
 if lines is not None:
@@ -47,7 +47,7 @@ if lines is not None:
 		    angleDeg = abs(math.atan2(y2-y1,x2-x1)*180/np.pi)
 		    # Only include line with angles > 80 degrees (almost vertical)
 		    if angleDeg > 80:
-			cv2.line(orig_image,(x1,y1),(x2,y2),(0,0,255),10)
+			cv2.line(orig_image,(x1,y1),(x2,y2),(0,0,255),2)
 			no_lines = no_lines + 1
 	print "Number of vertical lines: %d" % no_lines
 
